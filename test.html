@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <style>
+            
+.choose-us {
+    padding: 0px 0px 140px 0px;
+}
+
+.choose-us hr {
+    background-color: #005A70;
+    height: 2px;
+    width: 80%;
+    margin: 0px auto;
+}
+
+.choose-us .heading h4 {
+    font-size: 2rem;
+    color: #005c72;
+    font-family: sans-serif;
+    text-align: center;
+    margin: 40px 0 20px 0;
+}
+
+.choose-us .heading img {
+    width: 250px;
+    margin: 0px auto;
+}
+
+/* Headings */
+
+/* Main heading for card's front cover */
+.card-front__heading {
+    font-size: 1.5rem;
+    margin-top: .25rem;
+}
+
+/* Main heading for inside page */
+.inside-page__heading {
+    padding-bottom: 1rem;
+    width: 100%;
+}
+
+/* Mixed */
+
+/* For both inside page's main heading and 'view me' text on card front cover */
+.inside-page__heading,
+.card-front__text-view {
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.inside-page__heading,
+.card-front__text-view{
+    color: #005c72;
+}
+
+/* Front cover */
+
+.card-front__tp {
+    color: #fafbfa;
+}
+
+/* For pricing text on card front cover */
+.card-front__text-price {
+    font-size: 1.2rem;
+    margin-top: -.2rem;
+}
+
+/* Back cover */
+
+/* For inside page's body text */
+.inside-page__text {
+    color: #005c72;
+    font-family: sans-serif;
+}
+
+/* Icons ===========================================*/
+
+.card-front__icon {
+    fill: #fafbfa;
+    font-size: 3vw;
+    height: 3.25rem;
+    margin-top: -.5rem;
+    width: 3.25rem;
+}
+
+/* Buttons =================================================*/
+
+.inside-page__btn {
+    background-color: transparent;
+    border: 3px solid;
+    border-radius: .5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    overflow: hidden;
+    padding: .7rem .75rem;
+    position: relative;
+    text-decoration: none;
+    transition: all .3s ease;
+    width: 90%;
+    z-index: 10;
+}
+
+.inside-page__btn::before {
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transform: scaleY(0);
+    transition: all .3s ease;
+    width: 100%;
+    z-index: -1;
+}
+
+.inside-page__btn {
+    border-color: #005A70;
+    color: #005A70;
+}
+
+.inside-page__btn::before {
+    background-color: #005A70;
+}
+
+.inside-page__btn:hover {
+    color: #fafbfa;
+}
+
+.inside-page__btn:hover::before {
+    transform: scaleY(1);
+}
+
+/* Layout Structure=========================================*/
+
+/* .main {
+            background: linear-gradient(to bottom right,
+                    #eee8dd,
+                    #e3d9c6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100vh;
+            width: 100%;
+        } */
+
+/* Container to hold all cards in one place */
+.card-area {
+    align-items: center;
+    /* display: flex;
+    flex-wrap: wrap; */
+    height: 100%;
+    /* justify-content: space-between; */
+    padding: 1rem;
+}
+
+/* Card ============================================*/
+
+/* Area to hold an individual card */
+/* .card-section {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+} */
+
+
+/* A container to hold the flip card and the inside page */
+.card {
+    background-color: rgba(0, 0, 0, .05);
+    box-shadow: -.1rem 1.7rem 6.6rem -3.2rem rgba(0, 0, 0, 0.5);
+    height: 15rem;
+    position: relative;
+    transition: all 1s ease;
+    width: 15rem;
+}
+
+/* Flip card - covering both the front and inside front page */
+
+/* An outer container to hold the flip card. This excludes the inside page */
+.flip-card {
+    height: 15rem;
+    perspective: 100rem;
+    position: absolute;
+    right: 0;
+    transition: all 1s ease;
+    visibility: hidden;
+    width: 15rem;
+    z-index: 100;
+}
+
+/* The outer container's visibility is set to hidden. This is to make everything within the container NOT set to hidden  */
+/* This is done so content in the inside page can be selected */
+.flip-card>* {
+    visibility: visible;
+}
+
+/* An inner container to hold the flip card. This excludes the inside page */
+.flip-card__container {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transition: all 1s ease;
+    width: 100%;
+}
+
+.card-front,
+.card-back {
+    backface-visibility: hidden;
+    height: 17rem;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+/* Styling for the front side of the flip card */
+
+/* container for the front side */
+.card-front {
+    background-color: #fafbfa;
+    height: 17rem;
+    width: 15rem;
+}
+
+/* Front side's top section */
+.card-front__tp {
+    align-items: center;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 57% 90%, 50% 100%, 43% 90%, 0 90%);
+    display: flex;
+    flex-direction: column;
+    height: 14.5rem;
+    justify-content: center;
+    padding: .75rem;
+}
+
+.card-front__tp{
+    background: linear-gradient(to bottom,
+            #279eb2,
+            #005A70);
+}
+
+/* Front card's bottom section */
+.card-front__bt {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+/* Styling for the back side of the flip card */
+
+.card-back {
+    background-color: #fafbfa;
+    transform: rotateY(180deg);
+}
+
+/* Specifically targeting the <video> element */
+.video__container {
+    clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 100% 100%, 0% 100%);
+    height: auto;
+    min-height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* Inside page */
+
+.inside-page {
+    background-color: #fafbfa;
+    box-shadow: inset 20rem 0px 5rem -2.5rem rgba(0, 0, 0, 0.25);
+    height: 17rem;
+    padding: 2rem;
+    position: absolute;
+    right: 0;
+    transition: all 1s ease;
+    width: 15rem;
+    z-index: 1;
+}
+
+.inside-page__container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+/* Functionality ====================================*/
+
+/* This is to keep the card centered (within its container) when opened */
+.card:hover {
+    box-shadow:
+        -.1rem 1.7rem 6.6rem -3.2rem rgba(0, 0, 0, 0.75);
+    width: 30rem;
+}
+
+/* When the card is hovered, the flip card container will rotate */
+.card:hover .flip-card__container {
+    transform: rotateY(-180deg);
+}
+
+/* When the card is hovered, the shadow on the inside page will shrink to the left */
+.card:hover .inside-page {
+    box-shadow: inset 1rem 0px 5rem -2.5rem rgba(0, 0, 0, 0.1);
+}
+
+.choose-us .fa-file-signature{
+    color: white;
+    font-size: 4rem !important;
+}
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <!-- place navbar here -->
+        </header>
+        <main>
+            <section class="choose-us container">
+                <hr>
+                <div class="heading">
+                    <h4>Why Choose</h4>
+                    <img src="./assets/img/Prescott Logo.png" alt="">
+                </div>
+                <section class="card-area container">
+                    <div class="row">
+                        <div class="col-lg-3 my-5">
+                            <section class="card-section">
+                                <div class="card">
+                                    <div class="flip-card">
+                                        <div class="flip-card__container">
+                                            <div class="card-front">
+                                                <div class="card-front__tp card-front__tp">
+                                                    <img src="./assets/img/contract.png" alt="" width="70">
+                                                    <h2 class="card-front__heading text-center">
+                                                        Strong Rental Demand
+                                                    </h2>
+                                                </div>
+
+                                                <div class="card-front__bt">
+                                                    <p class="card-front__text-view card-front__text-view--city">
+                                                        Read More
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="card-back">
+                                                <video class="video__container" autoplay muted loop>
+                                                    <source class="video__media"
+                                                        src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761"
+                                                        type="video/mp4">
+                                                </video>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inside-page">
+                                        <div class="inside-page__container">
+                                            <p class="inside-page__text">
+                                                Prescott Properties are in high demand among discerning tenants seeking
+                                                luxury living experiences. Benefit from a steady stream of high-quality
+                                                tenants and enjoy consistent rental income.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-3 my-5">
+                            <section class="card-section">
+                                <div class="card">
+                                    <div class="flip-card">
+                                        <div class="flip-card__container">
+                                            <div class="card-front">
+                                                <div class="card-front__tp card-front__tp">
+                                                    <img src="./assets/img/mecca.png" alt="" width="70">
+                                                    <h2 class="card-front__heading text-center">
+                                                        ICONIC LANDMARKS
+                                                    </h2>
+                                                </div>
+
+                                                <div class="card-front__bt">
+                                                    <p class="card-front__text-view card-front__text-view--city">
+                                                        Read More
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="card-back">
+                                                <video class="video__container" autoplay muted loop>
+                                                    <source class="video__media"
+                                                        src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761"
+                                                        type="video/mp4">
+                                                </video>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inside-page">
+                                        <div class="inside-page__container">
+                                            <p class="inside-page__text">
+                                                Iconic landmarks that captivate attention and become prestigious symbols
+                                                of architectural brilliance. Owning an Prescott property means being
+                                                part of a legacy that leaves a lasting impression.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-3 my-5">
+                            <section class="card-section">
+                                <div class="card">
+                                    <div class="flip-card">
+                                        <div class="flip-card__container">
+                                            <div class="card-front">
+                                                <div class="card-front__tp card-front__tp">
+                                                    <img src="./assets/img/save-money.png" alt="" width="70">
+                                                    <h2 class="card-front__heading text-center">
+                                                        HIGH-YIELD RETURNS
+                                                    </h2>
+                                                </div>
+
+                                                <div class="card-front__bt">
+                                                    <p class="card-front__text-view card-front__text-view--city">
+                                                        Read More
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="card-back">
+                                                <video class="video__container" autoplay muted loop>
+                                                    <source class="video__media"
+                                                        src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761"
+                                                        type="video/mp4">
+                                                </video>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inside-page">
+                                        <div class="inside-page__container">
+                                            <p class="inside-page__text">
+                                                Prescott properties offer lucrative investment returns, with a history
+                                                of outperforming the market and delivering substantial capital
+                                                appreciation and rental income potential.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-3 my-5">
+                            <section class="card-section">
+                                <div class="card">
+                                    <div class="flip-card">
+                                        <div class="flip-card__container">
+                                            <div class="card-front">
+                                                <div class="card-front__tp card-front__tp">
+                                                    <img src="./assets/img/track-record.png" alt="" width="70">
+                                                    <h2 class="card-front__heading text-center">
+                                                        PROVEN TRACK RECORD
+                                                    </h2>
+                                                </div>
+
+                                                <div class="card-front__bt">
+                                                    <p class="card-front__text-view card-front__text-view--city">
+                                                        Read More
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="card-back">
+                                                <video class="video__container" autoplay muted loop>
+                                                    <source class="video__media"
+                                                        src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761"
+                                                        type="video/mp4">
+                                                </video>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inside-page">
+                                        <div class="inside-page__container">
+                                            <p class="inside-page__text">
+                                                Prescott has a proven track record of successful projects, earning the
+                                                trust and confidence of investors. Join a winning team and invest with a
+                                                developer known for delivering on promises.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-3 my-5">
+                            <section class="card-section">
+                                <div class="card">
+                                    <div class="flip-card">
+                                        <div class="flip-card__container">
+                                            <div class="card-front">
+                                                <div class="card-front__tp card-front__tp">
+                                                    <img src="./assets/img/growth.png" alt="" width="70">
+                                                    <h2 class="card-front__heading text-center">
+                                                        FUTURE GROWTH POTENTIAL
+                                                    </h2>
+                                                </div>
+
+                                                <div class="card-front__bt">
+                                                    <p class="card-front__text-view card-front__text-view--city">
+                                                        Read More
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="card-back">
+                                                <video class="video__container" autoplay muted loop>
+                                                    <source class="video__media"
+                                                        src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761"
+                                                        type="video/mp4">
+                                                </video>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inside-page">
+                                        <div class="inside-page__container">
+                                            <p class="inside-page__text">
+                                                Benefit from Prescott's vision for growth and expansion. Invest in a
+                                                developer with a strong pipeline of upcoming projects, ensuring
+                                                long-term appreciation and potential for portfolio diversification
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-3 my-5">
+                            <section class="card-section">
+                                <div class="card">
+                                    <div class="flip-card">
+                                        <div class="flip-card__container">
+                                            <div class="card-front">
+                                                <div class="card-front__tp card-front__tp">
+                                                    <img src="./assets/img/diamond.png" alt="" width="70">
+                                                    <h2 class="card-front__heading text-center">
+                                                        UNMATCHED LUXURY AND STYLE
+                                                    </h2>
+                                                </div>
+
+                                                <div class="card-front__bt">
+                                                    <p class="card-front__text-view card-front__text-view--city">
+                                                        Read More
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="card-back">
+                                                <video class="video__container" autoplay muted loop>
+                                                    <source class="video__media"
+                                                        src="https://player.vimeo.com/external/370331493.sd.mp4?s=e90dcaba73c19e0e36f03406b47bbd6992dd6c1c&profile_id=139&oauth2_token_id=57447761"
+                                                        type="video/mp4">
+                                                </video>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="inside-page">
+                                        <div class="inside-page__container">
+                                            <p class="inside-page__text">
+                                                Prescott has a proven track record of suc- cessful projects, earning the
+                                                trust and confidence of investors. Join a winning team and invest with a
+                                                developer known for delivering on promises.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </main>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
