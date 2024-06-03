@@ -39,10 +39,10 @@
 
 body {
     font-family: 'Kross Neue Grotesk Book', sans-serif;
-    background-image: url('/assets/img/image38.png');
+    /* background-image: url('/assets/img/image38.png');
     background-repeat: repeat;
     background-size: 50%;
-    background-position: center;
+    background-position: center; */
 }
 
 p {
@@ -390,7 +390,7 @@ ol {
 
 .about .div1 {
     display: flex;
-    padding: 100px 100px 50px 100px;
+    padding: 100px 0px 50px 0px;
 }
 
 .about .div1 .mobile {
