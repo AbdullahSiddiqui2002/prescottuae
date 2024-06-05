@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', function () {
   const swiper = new Swiper('.mySwiper', {
     direction: "vertical",
     slidesPerView: 1,
-    mousewheel: true,
+    mousewheel: {
+      releaseOnEdges: true,
+    },
     speed: 1000,
     pagination: {
       el: '.pagination ul',
@@ -33,17 +35,45 @@ document.addEventListener('DOMContentLoaded', function () {
             updateDotPosition(number); // Update dot position based on active page
           }
         });
-
-        // Disable mousewheel and keyboard navigation on the last slide
-        if (this.realIndex === this.slides.length - 1) {
-          this.mousewheel.disable();
-          this.keyboard.disable();
-        } else {
-          this.mousewheel.enable();
-          this.keyboard.enable();
-        }
       },
     },
+  });
+
+  swiper.on('slideChange', function () {
+    // Custom behavior for the last slide (slide number 5)
+    if (swiper.realIndex === swiper.slides.length - 1) {
+      // Enable scrolling to the next section
+      window.addEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+    } else {
+      window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+    }
+  });
+
+  function handleScrollOnLastSlide(event) {
+    if (event.deltaY > 0) {
+      console.log('Scrolling down on the last slide.');
+      // Allow default scrolling behavior to next section
+      window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+    } else if (event.deltaY < 0) {
+      // Prevent default scrolling behavior and go to the previous slide
+      swiper.slideTo(swiper.realIndex - 1);
+      console.log('Scrolling up on the last slide.');
+      event.preventDefault(); // Prevent default behavior
+    }
+  }
+
+  swiper.on('keydown', function (event) {
+    if (swiper.realIndex === swiper.slides.length - 1) {
+      if (event.key === 'ArrowDown') {
+        // Allow default scrolling behavior to next section
+        console.log('Scrolling down on the last slide.');
+      } else if (event.key === 'ArrowUp') {
+        // Prevent default scrolling behavior and go to the previous slide
+        swiper.slideTo(swiper.realIndex - 1);
+        console.log('Scrolling up on the last slide.');
+        event.preventDefault(); // Prevent default behavior
+      }
+    }
   });
 
   // Populate pagination numbers
@@ -58,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function pad(number, length) {
     return String(number).padStart(length, '0');
   }
+
   // Function to update dot position based on active page
   function updateDotPosition(activePage) {
     const dot = document.querySelector('.dot');
@@ -68,16 +99,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Function to animate banner text
   function animateBannerText(activeSlide) {
-    gsap.fromTo(activeSlide.querySelector('.banner-text'), 
-    { opacity: 0, x: -200 },
-    { opacity: 1, x: 0, duration: 0.6, delay: 0.3 }
+    gsap.fromTo(activeSlide.querySelector('.banner-text'),
+      { opacity: 0, x: -200 },
+      { opacity: 1, x: 0, duration: 0.6, delay: 0.3 }
     );
   }
 });
 
 var tl = gsap.timeline();
 
-tl.from("nav .navbar-brand, nav .nav-item, nav .rightdiv",{
+tl.from("nav .navbar-brand, nav .nav-item, nav .rightdiv", {
   y: -40,
   duration: 0.7,
   delay: 0.5,
@@ -85,26 +116,48 @@ tl.from("nav .navbar-brand, nav .nav-item, nav .rightdiv",{
   stagger: 0.15
 })
 
-tl.from(".banner .banner-text",{
+tl.from(".banner .banner-text h2", {
   opacity: 0,
   x: -200,
   stagger: 0.15,
   duration: 0.6
 })
 
-tl.from(".pagination",{
+tl.from(".banner .banner-text p", {
+  opacity: 0,
+  x: -200,
+  stagger: 0.15,
+  duration: 0.6
+})
+
+tl.from(".banner .banner-text .banner-read", {
+  opacity: 0,
+  x: -200,
+  stagger: 0.15,
+  duration: 0.6
+})
+
+tl.from(".banner .banner-text .banner-read-icon", {
+  opacity: 0,
+  x: -200,
+  stagger: 0.15,
+  duration: 0.6
+})
+
+tl.from(".pagination", {
   opacity: 0,
   x: 100,
   stagger: 0.15,
   duration: 0.6
 })
 
-tl.from(".social li",{
+tl.from(".social li", {
   opacity: 0,
   y: 30,
   stagger: 0.15,
   duration: 0.6
 })
+
 
 
 // slider
