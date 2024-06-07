@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
     keyboard: {
       enabled: true,
     },
+    touchEventsTarget: 'container', // Ensure touch events are properly captured
+    simulateTouch: true, // Enable touch simulation for desktop testing
     on: {
       init: function () {
         animateBannerText(this.slides[this.activeIndex]);
@@ -39,15 +41,61 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 
-  swiper.on('slideChange', function () {
-    // Custom behavior for the last slide (slide number 5)
+  let startY;
+
+  swiper.on('touchStart', function (event) {
+    startY = event.touches[0].clientY;
+  });
+
+  swiper.on('touchMove', function (event) {
+    const currentY = event.touches[0].clientY;
+    const deltaY = currentY - startY;
+
     if (swiper.realIndex === swiper.slides.length - 1) {
-      // Enable scrolling to the next section
-      window.addEventListener('wheel', handleScrollOnLastSlide, { passive: false });
-    } else {
-      window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+      if (deltaY < 0) {
+        // Allow default scrolling behavior to the next section when swiping up
+        console.log('Swiping up on the last slide.');
+        window.removeEventListener('touchmove', preventScroll, { passive: false });
+      } else if (deltaY > 0) {
+        // Prevent default scrolling behavior and go to the previous slide when swiping down
+        console.log('Swiping down on the last slide.');
+        swiper.slideTo(swiper.realIndex - 1);
+        window.addEventListener('touchmove', preventScroll, { passive: false });
+        event.preventDefault(); // Prevent default behavior
+      }
     }
   });
+
+  function preventScroll(event) {
+    event.preventDefault(); // Prevent default scrolling behavior
+  }
+
+
+
+  swiper.on('slideChange', function () {
+    if (swiper.realIndex === swiper.slides.length - 1) {
+      window.addEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+      window.addEventListener('touchmove', handleTouchMoveOnLastSlide, { passive: false });
+    } else {
+      window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+      window.removeEventListener('touchmove', handleTouchMoveOnLastSlide, { passive: false });
+    }
+  });
+
+  function handleTouchMoveOnLastSlide(event) {
+    const currentY = event.touches[0].clientY;
+    const deltaY = currentY - startY;
+
+    if (deltaY < 0) {
+      console.log('Swiping up on the last slide.');
+      window.removeEventListener('touchmove', handleTouchMoveOnLastSlide, { passive: false });
+    } else if (deltaY > 0) {
+      swiper.slideTo(swiper.realIndex - 1);
+      console.log('Swiping down on the last slide.');
+      event.preventDefault();
+    }
+  }
+
 
   function handleScrollOnLastSlide(event) {
     if (event.deltaY > 0) {
@@ -178,7 +226,7 @@ const carousel3Dswiper = new Swiper(".carousel-3D-swiper", {
     modifier: 1,
     slideShadows: true
   },
-   navigation: {
+  navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
   },
@@ -193,112 +241,112 @@ const carousel3Dswiper = new Swiper(".carousel-3D-swiper", {
 
 // vars
 'use strict'
-var	testim = document.getElementById("testim"),
-		testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
-    testimContent = Array.prototype.slice.call(document.getElementById("testim-content").children),
-    testimLeftArrow = document.getElementById("left-arrow"),
-    testimRightArrow = document.getElementById("right-arrow"),
-    testimSpeed = 4500,
-    currentSlide = 0,
-    currentActive = 0,
-    testimTimer,
-		touchStartPos,
-		touchEndPos,
-		touchPosDiff,
-		ignoreTouch = 30;
+var testim = document.getElementById("testim"),
+  testimDots = Array.prototype.slice.call(document.getElementById("testim-dots").children),
+  testimContent = Array.prototype.slice.call(document.getElementById("testim-content").children),
+  testimLeftArrow = document.getElementById("left-arrow"),
+  testimRightArrow = document.getElementById("right-arrow"),
+  testimSpeed = 4500,
+  currentSlide = 0,
+  currentActive = 0,
+  testimTimer,
+  touchStartPos,
+  touchEndPos,
+  touchPosDiff,
+  ignoreTouch = 30;
 ;
 
-window.onload = function() {
+window.onload = function () {
 
-    // Testim Script
-    function playSlide(slide) {
-        for (var k = 0; k < testimDots.length; k++) {
-            testimContent[k].classList.remove("active");
-            testimContent[k].classList.remove("inactive");
-            testimDots[k].classList.remove("active");
-        }
-
-        if (slide < 0) {
-            slide = currentSlide = testimContent.length-1;
-        }
-
-        if (slide > testimContent.length - 1) {
-            slide = currentSlide = 0;
-        }
-
-        if (currentActive != currentSlide) {
-            testimContent[currentActive].classList.add("inactive");            
-        }
-        testimContent[slide].classList.add("active");
-        testimDots[slide].classList.add("active");
-
-        currentActive = currentSlide;
-    
-        clearTimeout(testimTimer);
-        testimTimer = setTimeout(function() {
-            playSlide(currentSlide += 1);
-        }, testimSpeed)
+  // Testim Script
+  function playSlide(slide) {
+    for (var k = 0; k < testimDots.length; k++) {
+      testimContent[k].classList.remove("active");
+      testimContent[k].classList.remove("inactive");
+      testimDots[k].classList.remove("active");
     }
 
-    testimLeftArrow.addEventListener("click", function() {
-        playSlide(currentSlide -= 1);
-    })
-
-    testimRightArrow.addEventListener("click", function() {
-        playSlide(currentSlide += 1);
-    })    
-
-    for (var l = 0; l < testimDots.length; l++) {
-        testimDots[l].addEventListener("click", function() {
-            playSlide(currentSlide = testimDots.indexOf(this));
-        })
+    if (slide < 0) {
+      slide = currentSlide = testimContent.length - 1;
     }
 
-    playSlide(currentSlide);
+    if (slide > testimContent.length - 1) {
+      slide = currentSlide = 0;
+    }
 
-    // keyboard shortcuts
-    document.addEventListener("keyup", function(e) {
-        switch (e.keyCode) {
-            case 37:
-                testimLeftArrow.click();
-                break;
-                
-            case 39:
-                testimRightArrow.click();
-                break;
+    if (currentActive != currentSlide) {
+      testimContent[currentActive].classList.add("inactive");
+    }
+    testimContent[slide].classList.add("active");
+    testimDots[slide].classList.add("active");
 
-            case 39:
-                testimRightArrow.click();
-                break;
+    currentActive = currentSlide;
 
-            default:
-                break;
-        }
+    clearTimeout(testimTimer);
+    testimTimer = setTimeout(function () {
+      playSlide(currentSlide += 1);
+    }, testimSpeed)
+  }
+
+  testimLeftArrow.addEventListener("click", function () {
+    playSlide(currentSlide -= 1);
+  })
+
+  testimRightArrow.addEventListener("click", function () {
+    playSlide(currentSlide += 1);
+  })
+
+  for (var l = 0; l < testimDots.length; l++) {
+    testimDots[l].addEventListener("click", function () {
+      playSlide(currentSlide = testimDots.indexOf(this));
     })
-		
-		testim.addEventListener("touchstart", function(e) {
-				touchStartPos = e.changedTouches[0].clientX;
-		})
-	
-		testim.addEventListener("touchend", function(e) {
-				touchEndPos = e.changedTouches[0].clientX;
-			
-				touchPosDiff = touchStartPos - touchEndPos;
-			
-				console.log(touchPosDiff);
-				console.log(touchStartPos);	
-				console.log(touchEndPos);	
+  }
 
-			
-				if (touchPosDiff > 0 + ignoreTouch) {
-						testimLeftArrow.click();
-				} else if (touchPosDiff < 0 - ignoreTouch) {
-						testimRightArrow.click();
-				} else {
-					return;
-				}
-			
-		})
+  playSlide(currentSlide);
+
+  // keyboard shortcuts
+  document.addEventListener("keyup", function (e) {
+    switch (e.keyCode) {
+      case 37:
+        testimLeftArrow.click();
+        break;
+
+      case 39:
+        testimRightArrow.click();
+        break;
+
+      case 39:
+        testimRightArrow.click();
+        break;
+
+      default:
+        break;
+    }
+  })
+
+  testim.addEventListener("touchstart", function (e) {
+    touchStartPos = e.changedTouches[0].clientX;
+  })
+
+  testim.addEventListener("touchend", function (e) {
+    touchEndPos = e.changedTouches[0].clientX;
+
+    touchPosDiff = touchStartPos - touchEndPos;
+
+    console.log(touchPosDiff);
+    console.log(touchStartPos);
+    console.log(touchEndPos);
+
+
+    if (touchPosDiff > 0 + ignoreTouch) {
+      testimLeftArrow.click();
+    } else if (touchPosDiff < 0 - ignoreTouch) {
+      testimRightArrow.click();
+    } else {
+      return;
+    }
+
+  })
 }
 
 // testimonial
