@@ -417,6 +417,23 @@ ol {
     .banner .pagination {
         display: none;
     }
+    .banner .social{
+        display: none;
+    }
+}
+
+@media (max-width:768px) {
+    .banner .swiper-slide .banner-text p {
+        display: none;
+    }
+
+    .banner .banner-read {
+        display: none;
+    }
+    
+    .banner .banner-read-icon {
+        display: none;
+    }
 }
 
 /* slider */
