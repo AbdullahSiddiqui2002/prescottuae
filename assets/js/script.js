@@ -20,7 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
         animateBannerText(this.slides[this.activeIndex]);
       },
       slideChangeTransitionStart: function () {
-        gsap.to('.banner-text', { opacity: 0, x: -200, duration: 0.5 });
+        gsap.to('.banner-text h2', { opacity: 0, y: -40, duration: 0.7 });
+        gsap.to('.banner-text p', { opacity: 0, x: -200, duration: 0.7 });
+        gsap.to('.banner-text .banner-read', { opacity: 0, y: 40, duration: 0.7 });
+        gsap.to('.banner-text .banner-read-icon', { opacity: 0, y: 40, duration: 0.7 });
       },
       slideChangeTransitionEnd: function () {
         animateBannerText(this.slides[this.activeIndex]);
@@ -113,16 +116,28 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function animateBannerText(activeSlide) {
-    gsap.fromTo(activeSlide.querySelector('.banner-text'),
+    gsap.fromTo(activeSlide.querySelector('.banner-text h2'),
+      { opacity: 0, y: -40 },
+      { opacity: 1, y: 0, duration: 0.7, delay: 0.5 }
+    );
+    gsap.fromTo(activeSlide.querySelector('.banner-text p'),
       { opacity: 0, x: -200 },
-      { opacity: 1, x: 0, duration: 0.6, delay: 0.3 }
+      { opacity: 1, x: 0, duration: 0.7, delay: 0.5 }
+    );
+    gsap.fromTo(activeSlide.querySelector('.banner-text .banner-read'),
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.7, delay: 0.5 }
+    );
+    gsap.fromTo(activeSlide.querySelector('.banner-text .banner-read-icon'),
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.7, delay: 0.5 }
     );
   }
 });
 
 var tl = gsap.timeline();
 
-tl.from("nav .navbar-brand, nav .nav-item, nav .rightdiv", {
+tl.from("nav .navbar-brand, nav .nav-item, .banner .social li", {
   y: -40,
   duration: 0.7,
   delay: 0.5,
@@ -130,47 +145,47 @@ tl.from("nav .navbar-brand, nav .nav-item, nav .rightdiv", {
   stagger: 0.15
 })
 
-tl.from(".banner .banner-text h2", {
-  opacity: 0,
-  x: -200,
-  stagger: 0.15,
-  duration: 0.6
-})
+// tl.from(".banner .banner-text h2", {
+//   opacity: 0,
+//   x: -200,
+//   stagger: 0.15,
+//   duration: 0.6
+// })
 
-tl.from(".banner .banner-text p", {
-  opacity: 0,
-  x: -200,
-  stagger: 0.15,
-  duration: 0.6
-})
+// tl.from(".banner .banner-text p", {
+//   opacity: 0,
+//   x: -200,
+//   stagger: 0.15,
+//   duration: 0.6
+// })
 
-tl.from(".banner .banner-text .banner-read", {
-  opacity: 0,
-  x: -200,
-  stagger: 0.15,
-  duration: 0.6
-})
+// tl.from(".banner .banner-text .banner-read", {
+//   opacity: 0,
+//   x: -200,
+//   stagger: 0.15,
+//   duration: 0.6
+// })
 
-tl.from(".banner .banner-text .banner-read-icon", {
-  opacity: 0,
-  x: -200,
-  stagger: 0.15,
-  duration: 0.6
-})
+// tl.from(".banner .banner-text .banner-read-icon", {
+//   opacity: 0,
+//   x: -200,
+//   stagger: 0.15,
+//   duration: 0.6
+// })
 
-tl.from(".pagination", {
-  opacity: 0,
-  x: 100,
-  stagger: 0.15,
-  duration: 0.6
-})
+// tl.from(".pagination", {
+//   opacity: 0,
+//   x: 100,
+//   stagger: 0.15,
+//   duration: 0.6
+// })
 
-tl.from(".social li", {
-  opacity: 0,
-  y: 30,
-  stagger: 0.15,
-  duration: 0.6
-})
+// tl.from(".social li", {
+//   opacity: 0,
+//   y: 30,
+//   stagger: 0.15,
+//   duration: 0.6
+// })
 
 
 

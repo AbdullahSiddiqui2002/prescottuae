@@ -369,8 +369,8 @@ ol {
 
 .banner .social ul li {
     border: 2px solid white;
-    border-radius: 90%;
-    padding: 15px;
+    border-radius: 100%;
+    padding: 10px 15px;
     font-size: 1.3rem;
     margin: 0px 5px;
 }
