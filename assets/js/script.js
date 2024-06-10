@@ -1,4 +1,5 @@
 // slider
+
 document.addEventListener('DOMContentLoaded', function () {
   const swiper = new Swiper('.mySwiper', {
     direction: "vertical",
@@ -39,27 +40,44 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 
-function preventScroll(event) {
-  event.preventDefault(); // Prevent default scrolling behavior
-}
-
   swiper.on('slideChange', function () {
-    // Custom behavior for the last slide (slide number 5)
     if (swiper.realIndex === swiper.slides.length - 1) {
-      // Enable scrolling to the next section
       window.addEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+      window.addEventListener('touchstart', handleTouchStart, { passive: false });
+      window.addEventListener('touchmove', handleTouchMove, { passive: false });
     } else {
       window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+      window.removeEventListener('touchstart', handleTouchStart, { passive: false });
+      window.removeEventListener('touchmove', handleTouchMove, { passive: false });
     }
   });
+
+  let touchStartY = 0;
+
+  function handleTouchStart(event) {
+    touchStartY = event.touches[0].clientY;
+  }
+
+  function handleTouchMove(event) {
+    const touchEndY = event.touches[0].clientY;
+    const deltaY = touchStartY - touchEndY;
+    
+    if (deltaY > 0) {
+      console.log('Scrolling down on the last slide.');
+      window.removeEventListener('touchstart', handleTouchStart, { passive: false });
+      window.removeEventListener('touchmove', handleTouchMove, { passive: false });
+    } else if (deltaY < 0) {
+      swiper.slideTo(swiper.realIndex - 1);
+      console.log('Scrolling up on the last slide.');
+      event.preventDefault(); // Prevent default behavior
+    }
+  }
 
   function handleScrollOnLastSlide(event) {
     if (event.deltaY > 0) {
       console.log('Scrolling down on the last slide.');
-      // Allow default scrolling behavior to next section
       window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
     } else if (event.deltaY < 0) {
-      // Prevent default scrolling behavior and go to the previous slide
       swiper.slideTo(swiper.realIndex - 1);
       console.log('Scrolling up on the last slide.');
       event.preventDefault(); // Prevent default behavior
@@ -69,10 +87,8 @@ function preventScroll(event) {
   swiper.on('keydown', function (event) {
     if (swiper.realIndex === swiper.slides.length - 1) {
       if (event.key === 'ArrowDown') {
-        // Allow default scrolling behavior to next section
         console.log('Scrolling down on the last slide.');
       } else if (event.key === 'ArrowUp') {
-        // Prevent default scrolling behavior and go to the previous slide
         swiper.slideTo(swiper.realIndex - 1);
         console.log('Scrolling up on the last slide.');
         event.preventDefault(); // Prevent default behavior
@@ -80,7 +96,6 @@ function preventScroll(event) {
     }
   });
 
-  // Populate pagination numbers
   const paginationList = document.querySelector('.pagination ul');
   for (let i = 0; i < swiper.slides.length; i++) {
     const listItem = document.createElement('li');
@@ -88,12 +103,10 @@ function preventScroll(event) {
     paginationList.appendChild(listItem);
   }
 
-  // Function to pad numbers with leading zeros
   function pad(number, length) {
     return String(number).padStart(length, '0');
   }
 
-  // Function to update dot position based on active page
   function updateDotPosition(activePage) {
     const dot = document.querySelector('.dot');
     const activePageIndex = [...activePage.parentNode.children].indexOf(activePage); // Get index of active page
@@ -101,7 +114,6 @@ function preventScroll(event) {
     dot.style.top = `${dotTop}%`; // Set top position of the dot
   }
 
-  // Function to animate banner text
   function animateBannerText(activeSlide) {
     gsap.fromTo(activeSlide.querySelector('.banner-text'),
       { opacity: 0, x: -200 },
@@ -161,6 +173,7 @@ tl.from(".social li", {
   stagger: 0.15,
   duration: 0.6
 })
+
 
 
 
