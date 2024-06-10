@@ -1056,6 +1056,36 @@ ol {
         margin: 30px 0px 30px 0px;
     }
 }
+@media (max-width: 418px) {
+    .recent-projects h2 {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 408px) {
+
+    .recent-projects h2 {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width:340px) {
+    .recent-projects h2 {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width:296px) {
+    .recent-projects h2 {
+        font-size: 1rem;
+    }
+    .recent-projects .card__button {
+        margin-top: -10px;
+    }
+    .recent-projects .card__content {
+        height: 58%;
+    }
+}
 
 
 /* recent projects */
