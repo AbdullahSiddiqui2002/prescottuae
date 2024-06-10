@@ -40,17 +40,17 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 
-  // swiper.on('slideChange', function () {
-  //   if (swiper.realIndex === swiper.slides.length - 1) {
-  //     window.addEventListener('wheel', handleScrollOnLastSlide, { passive: false });
-  //     window.addEventListener('touchstart', handleTouchStart, { passive: false });
-  //     window.addEventListener('touchmove', handleTouchMove, { passive: false });
-  //   } else {
-  //     window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
-  //     window.removeEventListener('touchstart', handleTouchStart, { passive: false });
-  //     window.removeEventListener('touchmove', handleTouchMove, { passive: false });
-  //   }
-  // });
+  swiper.on('slideChange', function () {
+    if (swiper.realIndex === swiper.slides.length - 1) {
+      // window.addEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+      window.addEventListener('touchstart', handleTouchStart, { passive: false });
+      window.addEventListener('touchmove', handleTouchMove, { passive: false });
+    } else {
+      // window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+      window.removeEventListener('touchstart', handleTouchStart, { passive: false });
+      window.removeEventListener('touchmove', handleTouchMove, { passive: false });
+    }
+  });
 
   let touchStartY = 0;
 
