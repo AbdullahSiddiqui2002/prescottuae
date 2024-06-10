@@ -63,40 +63,34 @@ document.addEventListener('DOMContentLoaded', function () {
     const deltaY = touchStartY - touchEndY;
     
     if (swiper.realIndex === swiper.slides.length - 1) {
-      if (deltaY > 0) {
-        console.log('Scrolling down on the last slide.');
-        window.removeEventListener('touchstart', handleTouchStart, { passive: false });
-        window.removeEventListener('touchmove', handleTouchMove, { passive: false });
-      } else if (deltaY < 0) {
+      if (deltaY < 0) { // Swiping down
         swiper.slideTo(swiper.realIndex - 1);
         console.log('Scrolling up on the last slide.');
         event.preventDefault(); // Prevent default behavior
-      }
+      } 
+      // No need to prevent default behavior when swiping up (deltaY > 0)
     }
   }
 
   function handleScrollOnLastSlide(event) {
     if (swiper.realIndex === swiper.slides.length - 1) {
-      if (event.deltaY > 0) {
-        console.log('Scrolling down on the last slide.');
-        window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
-      } else if (event.deltaY < 0) {
+      if (event.deltaY < 0) { // Scrolling up
         swiper.slideTo(swiper.realIndex - 1);
         console.log('Scrolling up on the last slide.');
         event.preventDefault(); // Prevent default behavior
       }
+      // No need to prevent default behavior when scrolling down (event.deltaY > 0)
     }
   }
 
   swiper.on('keydown', function (event) {
     if (swiper.realIndex === swiper.slides.length - 1) {
-      if (event.key === 'ArrowDown') {
-        console.log('Scrolling down on the last slide.');
-      } else if (event.key === 'ArrowUp') {
+      if (event.key === 'ArrowUp') {
         swiper.slideTo(swiper.realIndex - 1);
         console.log('Scrolling up on the last slide.');
         event.preventDefault(); // Prevent default behavior
       }
+      // No need to prevent default behavior when pressing ArrowDown
     }
   });
 
@@ -177,8 +171,6 @@ tl.from(".social li", {
   stagger: 0.15,
   duration: 0.6
 })
-
-
 
 
 

@@ -708,7 +708,7 @@ ol {
 /* card slider */
 
 .card-slider {
-    padding: 200px 0px 0px 0px;
+    padding: 100px 0px 0px 0px;
 }
 
 .card-slider .carousel-3D-swiper-section {
@@ -718,7 +718,7 @@ ol {
     font-size: 14px;
     color: #000;
     margin: 0;
-    padding: 0;
+    padding: 10px 0px 70px 0px;
     max-width: 1200px;
     margin: auto;
     overflow: hidden;
@@ -789,13 +789,7 @@ ol {
     margin: 30px 100px 30px 100px;
 }
 
-@media (max-width: 992px) {
-    .card-slider .heading {
-        display: block;
-        margin: 30px 100px 30px 100px;
-    }
 
-}
 
 .card-slider .heading .left {
     width: 30%;
@@ -819,6 +813,38 @@ ol {
 .card-slider .heading .right p {
     padding: 0px 20px;
 }
+
+.card-slider .swiper-button-next, .card-slider .swiper-button-prev {
+    top: 100%;
+    margin: 5px 0px;
+}
+
+.card-slider .swiper-button-next {
+    right: 45%;
+}
+
+.card-slider .swiper-button-prev{
+    left: 45%;
+}
+
+.swiper-pagination{
+    display: none !important;
+}
+
+@media (max-width: 992px) {
+    .card-slider .heading {
+        display: block;
+        margin: 30px 100px 30px 100px;
+    }
+    .card-slider .heading .right p {
+        padding: 0px 0px;
+    }
+    .card-slider .carousel-3D-swiper-section {
+        max-width: auto;
+    }
+
+}
+
 
 /* card slider */
 
@@ -1013,6 +1039,16 @@ ol {
         transform-origin: left;
         transition: opacity 500ms ease-in, transform 500ms ease-in;
         transition-delay: 500ms;
+    }
+}
+
+@media (max-width: 992px) {
+    .recent-projects .heading h3 {
+        text-align: center !important;
+    }
+
+    .recent-projects .card {
+        margin: 0px auto;
     }
 }
 
