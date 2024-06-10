@@ -260,26 +260,78 @@ ol {
 
 @media (max-width:660px) {
     .banner .swiper-slide .banner-text h2 {
-        font-size: 45px;
+        font-size: 60px;
     }
     
     .banner .swiper-slide .banner-text h2 span {
-        font-size: 150px;
+        font-size: 175px;
     }
-    .banner .swiper-slide .banner-text p {
+    /* .banner .swiper-slide .banner-text p {
         width: 400px;
+    } */
+    .banner .banner-text {
+        left: 20px;
     }
 }
-@media (max-width:440px) {
+@media (max-width:510px) {
     .banner .swiper-slide .banner-text h2 {
-        font-size: 30px;
+        font-size: 50px;
     }
     
     .banner .swiper-slide .banner-text h2 span {
-        font-size: 120px;
+        font-size: 156px;
+        margin-left: 10px;
     }
-    .banner .swiper-slide .banner-text p {
-        width: 250px;
+    /* .banner .swiper-slide .banner-text p {
+        width: 400px;
+    } */
+}
+@media (max-width:425px) {
+    .banner .swiper-slide .banner-text h2 {
+        font-size: 40px;
+    }
+    
+    .banner .swiper-slide .banner-text h2 span {
+        font-size: 135px;
+        margin-left: 10px;
+    }
+    /* .banner .swiper-slide .banner-text p {
+        width: 400px;
+    } */
+    .banner .banner-text {
+        left: 10px;
+    }
+}
+@media (max-width:340px) {
+    .banner .swiper-slide .banner-text h2 {
+        font-size: 35px;
+    }
+    
+    .banner .swiper-slide .banner-text h2 span {
+        font-size: 125px;
+        margin-left: 8px;
+    }
+    /* .banner .swiper-slide .banner-text p {
+        width: 400px;
+    } */
+    .banner .banner-text {
+        left: 10px;
+    }
+}
+@media (max-width:320px) {
+    .navbar-brand {
+        padding: 18px 0px 18px 10px;
+    }
+    .navbar-toggler {
+        margin: 15px 10px 15px 0px;
+    }
+}
+@media (max-width:260px) {
+    .navbar-brand {
+        padding: 18px 0px 18px 0px;
+    }
+    .navbar-toggler {
+        margin: 15px 0px 15px 0px;
     }
 }
 
