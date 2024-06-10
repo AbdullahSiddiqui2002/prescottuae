@@ -14,8 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
     keyboard: {
       enabled: true,
     },
-    touchEventsTarget: 'container', // Ensure touch events are properly captured
-    simulateTouch: true, // Enable touch simulation for desktop testing
     on: {
       init: function () {
         animateBannerText(this.slides[this.activeIndex]);
@@ -41,36 +39,9 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 
-  let startY;
-
-swiper.on('touchStart', function (event) {
-  startY = event.touches[0].clientY;
-});
-
-swiper.on('touchMove', function (event) {
-  const currentY = event.touches[0].clientY;
-  const deltaY = currentY - startY;
-
-  if (swiper.realIndex === swiper.slides.length - 1) {
-    if (deltaY < 0) {
-      // Allow default scrolling behavior to the next section when swiping up
-      console.log('Swiping up on the last slide.');
-      window.removeEventListener('touchmove', preventScroll, { passive: false });
-    } else if (deltaY > 0) {
-      // Prevent default scrolling behavior and go to the previous slide when swiping down
-      console.log('Swiping down on the last slide.');
-      swiper.slideTo(swiper.realIndex - 1);
-      window.addEventListener('touchmove', preventScroll, { passive: false });
-      event.preventDefault(); // Prevent default behavior
-    }
-  }
-});
-
 function preventScroll(event) {
   event.preventDefault(); // Prevent default scrolling behavior
 }
-
-  
 
   swiper.on('slideChange', function () {
     // Custom behavior for the last slide (slide number 5)
