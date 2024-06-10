@@ -62,25 +62,29 @@ document.addEventListener('DOMContentLoaded', function () {
     const touchEndY = event.touches[0].clientY;
     const deltaY = touchStartY - touchEndY;
     
-    if (deltaY > 0) {
-      console.log('Scrolling down on the last slide.');
-      window.removeEventListener('touchstart', handleTouchStart, { passive: false });
-      window.removeEventListener('touchmove', handleTouchMove, { passive: false });
-    } else if (deltaY < 0) {
-      swiper.slideTo(swiper.realIndex - 1);
-      console.log('Scrolling up on the last slide.');
-      event.preventDefault(); // Prevent default behavior
+    if (swiper.realIndex === swiper.slides.length - 1) {
+      if (deltaY > 0) {
+        console.log('Scrolling down on the last slide.');
+        window.removeEventListener('touchstart', handleTouchStart, { passive: false });
+        window.removeEventListener('touchmove', handleTouchMove, { passive: false });
+      } else if (deltaY < 0) {
+        swiper.slideTo(swiper.realIndex - 1);
+        console.log('Scrolling up on the last slide.');
+        event.preventDefault(); // Prevent default behavior
+      }
     }
   }
 
   function handleScrollOnLastSlide(event) {
-    if (event.deltaY > 0) {
-      console.log('Scrolling down on the last slide.');
-      window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
-    } else if (event.deltaY < 0) {
-      swiper.slideTo(swiper.realIndex - 1);
-      console.log('Scrolling up on the last slide.');
-      event.preventDefault(); // Prevent default behavior
+    if (swiper.realIndex === swiper.slides.length - 1) {
+      if (event.deltaY > 0) {
+        console.log('Scrolling down on the last slide.');
+        window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+      } else if (event.deltaY < 0) {
+        swiper.slideTo(swiper.realIndex - 1);
+        console.log('Scrolling up on the last slide.');
+        event.preventDefault(); // Prevent default behavior
+      }
     }
   }
 
@@ -173,6 +177,7 @@ tl.from(".social li", {
   stagger: 0.15,
   duration: 0.6
 })
+
 
 
 
