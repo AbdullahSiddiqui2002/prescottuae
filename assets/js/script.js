@@ -4,17 +4,17 @@ document.addEventListener('DOMContentLoaded', function () {
   const swiper = new Swiper('.mySwiper', {
     direction: "vertical",
     slidesPerView: 1,
-    mousewheel: {
-      releaseOnEdges: true,
-    },
+    // mousewheel: {
+    //   releaseOnEdges: true,
+    // },
     speed: 1000,
     pagination: {
       el: '.pagination ul',
       clickable: true,
     },
-    keyboard: {
-      enabled: true,
-    },
+    // keyboard: {
+    //   enabled: true,
+    // },
     on: {
       init: function () {
         animateBannerText(this.slides[this.activeIndex]);
@@ -40,17 +40,17 @@ document.addEventListener('DOMContentLoaded', function () {
     },
   });
 
-  swiper.on('slideChange', function () {
-    if (swiper.realIndex === swiper.slides.length - 1) {
-      window.addEventListener('wheel', handleScrollOnLastSlide, { passive: false });
-      window.addEventListener('touchstart', handleTouchStart, { passive: false });
-      window.addEventListener('touchmove', handleTouchMove, { passive: false });
-    } else {
-      window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
-      window.removeEventListener('touchstart', handleTouchStart, { passive: false });
-      window.removeEventListener('touchmove', handleTouchMove, { passive: false });
-    }
-  });
+  // swiper.on('slideChange', function () {
+  //   if (swiper.realIndex === swiper.slides.length - 1) {
+  //     window.addEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+  //     window.addEventListener('touchstart', handleTouchStart, { passive: false });
+  //     window.addEventListener('touchmove', handleTouchMove, { passive: false });
+  //   } else {
+  //     window.removeEventListener('wheel', handleScrollOnLastSlide, { passive: false });
+  //     window.removeEventListener('touchstart', handleTouchStart, { passive: false });
+  //     window.removeEventListener('touchmove', handleTouchMove, { passive: false });
+  //   }
+  // });
 
   let touchStartY = 0;
 
