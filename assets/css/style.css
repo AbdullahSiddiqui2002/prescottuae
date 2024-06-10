@@ -305,7 +305,7 @@ ol {
 
 .banner .social {
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     display: flex;
     z-index: 1;
 }
