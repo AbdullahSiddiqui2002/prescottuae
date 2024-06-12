@@ -1,7 +1,7 @@
 // slider
 
 document.addEventListener('DOMContentLoaded', function () {
-  const swiper = new Swiper('.mySwiper', {
+  const swiper = new Swiper('.banner-desktop .mySwiper', {
     direction: "vertical",
     slidesPerView: 1,
     mousewheel: {
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     speed: 1000,
     pagination: {
-      el: '.pagination ul',
+      el: '.banner-desktop .pagination ul',
       clickable: true,
     },
     keyboard: {
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
       },
       slideChange: function () {
         const activeIndex = this.realIndex + 1;
-        const paginationNumbers = document.querySelectorAll('.pagination ul li');
+        const paginationNumbers = document.querySelectorAll('.banner-desktop .pagination ul li');
         paginationNumbers.forEach((number, index) => {
           number.textContent = pad(index + 1, 2); // Pad the number with 2 digits
           number.classList.remove('active-page');
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  const paginationList = document.querySelector('.pagination ul');
+  const paginationList = document.querySelector('.banner-desktop .pagination ul');
   for (let i = 0; i < swiper.slides.length; i++) {
     const listItem = document.createElement('li');
     listItem.textContent = pad(i + 1, 2); // Pad the number with 2 digits
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function updateDotPosition(activePage) {
-    const dot = document.querySelector('.dot');
+    const dot = document.querySelector('.banner-desktop .dot');
     const activePageIndex = [...activePage.parentNode.children].indexOf(activePage); // Get index of active page
     const dotTop = 7 + (activePageIndex * 6); // Calculate top position
     dot.style.top = `${dotTop}%`; // Set top position of the dot
@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 var tl = gsap.timeline();
 
-tl.from("nav .navbar-brand, nav .nav-item, .banner .social li", {
+tl.from("nav .navbar-brand, nav .nav-item, .banner-desktop .social li", {
   y: -40,
   duration: 0.7,
   delay: 0.5,
@@ -216,7 +216,7 @@ const carousel3Dswiper = new Swiper(".carousel-3D-swiper", {
   }
 });
 
-var swiper = new Swiper(".mySwiper", {
+var swiper = new Swiper(".banner-mobile .mySwiper", {
   slidesPerView: 1,
   spaceBetween: 30,
   loop: true,
@@ -228,6 +228,7 @@ var swiper = new Swiper(".mySwiper", {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
   },
+  
 });
 
 // card slider

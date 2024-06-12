@@ -461,7 +461,7 @@ ol {
     padding: 2px 0px;
 }
 
-.banner .social {
+.banner-desktop .social {
     position: absolute;
     bottom: 0px;
     display: flex;
@@ -469,11 +469,11 @@ ol {
     padding-bottom: 40px;
 }
 
-.banner .social ul {
+.banner-desktop .social ul {
     display: flex;
 }
 
-.banner .social ul li {
+.banner-desktop .social ul li {
     border: 2px solid white;
     border-radius: 100%;
     padding: 10px 15px;
@@ -481,18 +481,18 @@ ol {
     margin: 0px 5px;
 }
 
-.banner .social ul li i {
+.banner-desktop .social ul li i {
     font-size: 35px;
 }
 
-.banner .fa-facebook-f,
-.whatsapp-icon,
-.fa-instagram,
-.fa-x-twitter {
+.banner-desktop .fa-facebook-f,
+.banner-desktop .whatsapp-icon,
+.banner-desktop .fa-instagram,
+.banner-desktop .fa-x-twitter {
     color: white !important;
 }
 
-.banner .pagination {
+.banner-desktop .pagination {
     position: absolute;
     top: 40px;
     left: 90%;
@@ -501,7 +501,7 @@ ol {
     z-index: 1;
 }
 
-.banner .pagination ul {
+.banner-desktop .pagination ul {
     position: absolute;
     top: 40%;
     color: white;
@@ -509,11 +509,11 @@ ol {
     font-size: 20px;
 }
 
-.banner .active-page {
+.banner-desktop .active-page {
     font-size: 50px;
 }
 
-.banner .dot {
+.banner-desktop .dot {
     width: 20px;
     height: 20px;
     background-color: #005A70;
@@ -523,7 +523,7 @@ ol {
     left: -11px;
 }
 
-.banner .swiper-pagination-vertical.swiper-pagination-bullets,
+.banner-desktop .swiper-pagination-vertical.swiper-pagination-bullets,
 .swiper-vertical>.swiper-pagination-bullets {
     right: var(--swiper-pagination-right, 8px);
     left: 20px;
@@ -531,7 +531,7 @@ ol {
     transform: translate3d(0px, -50%, 0);
 }
 
-.banner .swiper-pagination-bullet {
+.banner-desktop .swiper-pagination-bullet {
     display: none !important;
 }
 
@@ -540,7 +540,7 @@ ol {
 }
 
 @media (min-width:1159px) {
-    .banner .pagination {
+    .banner-desktop .pagination {
         position: absolute;
         top: 40px;
         left: 87%;
@@ -552,7 +552,7 @@ ol {
 
 @media (max-width:1159px) {
 
-    .banner .pagination {
+    .banner-desktop .pagination {
         position: absolute;
         top: 40px;
         left: 83%;
@@ -564,7 +564,7 @@ ol {
 
 @media (max-width:768px) {
 
-    .banner .social ul li {
+    .banner-desktop .social ul li {
         border: 2px solid white;
         border-radius: 90%;
         padding: 6px;
@@ -576,11 +576,11 @@ ol {
 
 
 @media (max-width:992px) {
-    .banner .pagination {
+    .banner-desktop .pagination {
         display: none;
     }
 
-    .banner .social {
+    .banner-desktop .social {
         display: none;
     }
 }
