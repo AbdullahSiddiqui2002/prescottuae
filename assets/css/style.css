@@ -906,8 +906,8 @@ ol {
 .recent-projects .card {
     display: grid;
     place-items: center;
-    width: 80vw;
-    max-width: 21.875rem;
+    width: 500px;
+    max-width: 35.875rem;
     height: 28.125rem;
     overflow: hidden;
     border-radius: 0.625rem;
@@ -1084,6 +1084,34 @@ ol {
     }
     .recent-projects .card__content {
         height: 58%;
+    }
+}
+
+@media (max-width:550px) {
+    .recent-projects .card {
+        width: 400px;
+        max-width: 21.875rem;
+    }
+}
+
+@media (max-width:400px) {
+    .recent-projects .card {
+        width: 300px;
+        max-width: 16.875rem;
+    }
+}
+
+@media (max-width:315px) {
+    .recent-projects .card {
+        width: 250px;
+        max-width: 15.875rem;
+    }
+}
+
+@media (max-width:260px) {
+    .recent-projects .card {
+        width: 200px;
+        max-width: 17.875rem;
     }
 }
 
