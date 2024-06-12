@@ -706,8 +706,6 @@ ol {
 
 .about .div1 .right img {
     width: 100%;
-    border-left: 10px solid #dbf1ff;
-    border-bottom: 10px solid #dbf1ff;
 }
 
 @media (max-width: 1400px) {
@@ -764,8 +762,6 @@ ol {
 
     .about .div1 .right img {
         width: 100%;
-        border-left: 10px solid #dbf1ff;
-        border-bottom: 10px solid #dbf1ff;
     }
 }
 
@@ -809,8 +805,6 @@ ol {
 
 .about .div2 .left img {
     width: 100%;
-    border-right: 10px solid #dbf1ff;
-    border-bottom: 10px solid #dbf1ff;
 
 }
 
