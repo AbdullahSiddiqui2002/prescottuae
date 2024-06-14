@@ -292,131 +292,147 @@ ol {
     width: 600px;
     font-weight: 800;
 }
+
 @media (max-width:992px) {
-    
-.banner .banner-text {
-    left: 60px;
+
+    .banner .banner-text {
+        left: 60px;
+    }
 }
-}
+
 @media (max-width:660px) {
-    .banner .swiper-slide #residency h2{
-       font-size: 55px;
+    .banner .swiper-slide #residency h2 {
+        font-size: 55px;
     }
 
     .banner .swiper-slide #residency h2 span {
         font-size: 170px;
         margin-left: 15px;
     }
+
     .banner .banner-text {
         top: 200px;
     }
 }
+
 @media (max-width:540px) {
-    .banner .swiper-slide #serene h2{
-       font-size: 55px;
+    .banner .swiper-slide #serene h2 {
+        font-size: 55px;
     }
 
     .banner .swiper-slide #serene h2 span {
         font-size: 170px;
         margin-left: 15px;
     }
-    .banner .swiper-slide #residency h2{
+
+    .banner .swiper-slide #residency h2 {
         font-size: 45px;
-     }
- 
-     .banner .swiper-slide #residency h2 span {
-         font-size: 150px;
-         margin-left: 12px;
-     }
-     .banner .banner-text {
+    }
+
+    .banner .swiper-slide #residency h2 span {
+        font-size: 150px;
+        margin-left: 12px;
+    }
+
+    .banner .banner-text {
         top: 200px;
     }
 }
+
 @media (max-width:450px) {
     .banner .swiper-slide .banner-text h2 {
         font-size: 50px;
     }
-    
-    .banner .swiper-slide #serene h2{
-       font-size: 45px;
+
+    .banner .swiper-slide #serene h2 {
+        font-size: 45px;
     }
 
     .banner .swiper-slide #serene h2 span {
         font-size: 150px;
         margin-left: 12px;
     }
-    .banner .swiper-slide #residency h2{
+
+    .banner .swiper-slide #residency h2 {
         font-size: 35px;
-     }
- 
-     .banner .swiper-slide #residency h2 span {
-         font-size: 130px;
-         margin-left: 10px;
-     }
-     .banner .banner-text {
+    }
+
+    .banner .swiper-slide #residency h2 span {
+        font-size: 130px;
+        margin-left: 10px;
+    }
+
+    .banner .banner-text {
         left: 40px !important;
         top: 200px;
     }
 }
+
 @media (max-width:350px) {
     .banner .swiper-slide .banner-text h2 {
         font-size: 40px;
     }
-    
-    .banner .swiper-slide #serene h2{
-       font-size: 35px;
+
+    .banner .swiper-slide #serene h2 {
+        font-size: 35px;
     }
 
     .banner .swiper-slide #serene h2 span {
         font-size: 130px;
         margin-left: 10px;
     }
-    .banner .swiper-slide #residency h2{
+
+    .banner .swiper-slide #residency h2 {
         font-size: 25px;
-     }
- 
-     .banner .swiper-slide #residency h2 span {
-         font-size: 110px;
-         margin-left: 10px;
-     }
-     .banner .banner-text {
+    }
+
+    .banner .swiper-slide #residency h2 span {
+        font-size: 110px;
+        margin-left: 10px;
+    }
+
+    .banner .banner-text {
         left: 40px !important;
         top: 220px;
     }
 }
+
 @media (max-width:295px) {
     .banner .swiper-slide .banner-text h2 {
         font-size: 35px;
     }
-    
-    .banner .swiper-slide #serene h2{
-       font-size: 25px;
+
+    .banner .swiper-slide #serene h2 {
+        font-size: 25px;
     }
 
     .banner .swiper-slide #serene h2 span {
         font-size: 100px;
         margin-left: 10px;
     }
-    .banner .swiper-slide #residency h2{
+
+    .banner .swiper-slide #residency h2 {
         font-size: 20px;
-     }
- 
-     .banner .swiper-slide #residency h2 span {
-         font-size: 90px;
-         margin-left: 10px;
-     }
-     .banner .banner-text {
+    }
+
+    .banner .swiper-slide #residency h2 span {
+        font-size: 90px;
+        margin-left: 10px;
+    }
+
+    .banner .banner-text {
         left: 40px !important;
         top: 220px;
     }
 }
+
 @media (max-width:235px) {
     .banner .swiper-slide .banner-text h2 {
         font-size: 25px;
     }
-    
-    .banner .swiper-slide #serene h2{
-       font-size: 20px;
+
+    .banner .swiper-slide #serene h2 {
+        font-size: 20px;
     }
 
     .banner .swiper-slide #serene h2 span {
@@ -424,16 +440,18 @@ ol {
         margin-left: 10px;
         top: -20px;
     }
-    .banner .swiper-slide #residency h2{
+
+    .banner .swiper-slide #residency h2 {
         font-size: 20px;
-     }
- 
-     .banner .swiper-slide #residency h2 span {
-         font-size: 50px;
-         margin-left: 10px;
-         top: -10px;
-     }
-     .banner .banner-text {
+    }
+
+    .banner .swiper-slide #residency h2 span {
+        font-size: 50px;
+        margin-left: 10px;
+        top: -10px;
+    }
+
+    .banner .banner-text {
         left: 20px !important;
         top: 220px;
     }
@@ -628,7 +646,8 @@ ol {
 .banner-mobile .swiper-slide img {
     display: block;
     width: 100%;
-    height: 100%;
+    height: 100vh;
+    overflow: hidden;
     object-fit: cover;
     opacity: 0.9;
 }
@@ -638,7 +657,8 @@ ol {
     margin-right: auto;
 }
 
-.banner-mobile .swiper-button-next, .banner-mobile .swiper-button-prev{
+.banner-mobile .swiper-button-next,
+.banner-mobile .swiper-button-prev {
     color: #ffffff !important;
 }
 
@@ -868,6 +888,10 @@ ol {
 
 .card-slider {
     padding: 100px 0px 0px 0px;
+    background-image: url("../img/image38.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 30%;
 }
 
 .card-slider .carousel-3D-swiper-section {
@@ -1009,6 +1033,10 @@ ol {
 
 .recent-projects .heading {
     margin: 30px 100px 30px 100px;
+}
+
+.recent-projects .recent-projects-div {
+    background-color: #f0f9ff;
 }
 
 .recent-projects .heading h3 {
@@ -1688,6 +1716,10 @@ ol {
 
 .construction-updates {
     padding: 0px 0px 80px 0px;
+    background-image: url("../img/image38.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 40%;
 }
 
 .construction-updates .heading {
@@ -1962,15 +1994,15 @@ ol {
 /* testimonial */
 
 .testim {
+    margin: 200px 0px;
     width: 100%;
-    position: absolute;
-    top: 105%;
+    /* position: absolute;
+    top: 50%; */
     -webkit-transform: translatey(-50%);
     -moz-transform: translatey(-50%);
     -ms-transform: translatey(-50%);
     -o-transform: translatey(-50%);
     transform: translatey(-50%);
-    /* padding: 100px 0px; */
 }
 
 .testim .wrap {
@@ -1984,7 +2016,7 @@ ol {
 .testim .arrow {
     display: block;
     position: absolute;
-    color: #005A70;
+    color: #333;
     cursor: pointer;
     font-size: 2em;
     top: 50%;
@@ -2007,16 +2039,16 @@ ol {
 }
 
 .testim .arrow:hover {
-    color: #ea830e;
+    color: green;
 }
 
 
 .testim .arrow.left {
-    left: 10px;
+    left: 70px;
 }
 
 .testim .arrow.right {
-    right: 10px;
+    right: 70px;
 }
 
 .testim .dots {
@@ -2036,7 +2068,7 @@ ol {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    border: 1px solid #eee;
+    border: 1px solid green;
     margin: 0 10px;
     cursor: pointer;
     -webkit-transition: all .5s ease-in-out;
@@ -2049,8 +2081,8 @@ ol {
 
 .testim .dots .dot.active,
 .testim .dots .dot:hover {
-    background: #005A70;
-    border-color: #005A70;
+    background: green;
+    border-color: green;
 }
 
 .testim .dots .dot.active {
@@ -2095,15 +2127,15 @@ ol {
 }
 
 .testim .cont div h2 {
-    color: #ea830e;
+    color: green;
     font-size: 1em;
     margin: 15px 0;
 }
 
 .testim .cont div p {
     font-size: 1.15em;
-    color: #53909e;
-    width: 80%;
+    color: #333;
+    width: 70%;
     margin: auto;
 }
 
